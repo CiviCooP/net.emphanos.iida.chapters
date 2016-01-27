@@ -3,6 +3,25 @@
 require_once 'chapters.civix.php';
 
 /**
+ * Implements hook_civicrm_post().
+ */
+function chapters_civicrm_post( $op, $objectName, $objectId, &$objectRef ) {
+  if ($objectName == 'Address') {
+    $matcher = CRM_Chapters_Matcher::singleton();
+    $matcher->updateContact($objectRef->contact_id);
+  }
+}
+
+/**
+ * Implements hook_civicrm_customFieldOptions().
+ *
+ * @link http://wiki.civicrm.org/confluence/display/CRMDOC44/hook_civicrm_customFieldOptions
+ */
+function chapters_civicrm_customFieldOptions($fieldID, &$options, $detailedFormat = false ) {
+  CRM_Chapters_CountryList::civicrm_customFieldOptions($fieldID, $options, $detailedFormat);
+}
+
+/**
  * Implements hook_civicrm_config().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_config
