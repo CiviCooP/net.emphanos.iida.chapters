@@ -15,6 +15,23 @@ function chapters_civicrm_post( $op, $objectName, $objectId, &$objectRef ) {
 }
 
 /**
+ * Implements hook_civicrm_custom().
+ *
+ * @link http://wiki.civicrm.org/confluence/display/CRMDOC44/hook_civicrm_custom
+ */
+function chapters_civicrm_custom($op,$groupID, $entityID, &$params ) {
+  $config = CRM_Chapters_ChapterConfig::singleton();
+  if ($config->getCustomGroup('id') == $groupID) {
+    foreach($params as $field) {
+      if ($field['custom_field_id'] == $config->getManualField('id') && empty($field['value'])) {
+        $matcher = CRM_Chapters_Matcher::singleton();
+        $matcher->updateContact($entityID);
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_civicrm_optionValues().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC44/hook_civicrm_optionValues
