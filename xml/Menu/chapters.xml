@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<menu>
+    <item>
+        <path>civicrm/contact/automatch_chapters</path>
+        <page_callback>CRM_Chapters_Page_AutomatchChapters</page_callback>
+        <title>Automatch Chapters</title>
+        <access_arguments>access CiviCRM</access_arguments>
+    </item>
+    <item>
+        <path>civicrm/contact/automatch_chapters/edit</path>
+        <page_callback>CRM_Chapters_Form_AutomatchChapters</page_callback>
+        <title>Automatch Chapters</title>
+        <access_arguments>access CiviCRM</access_arguments>
+    </item>
+    <item>
+        <path>civicrm/chapters/update_all_contacts</path>
+        <page_callback>CRM_Chapters_Page_UpdateAllContacts</page_callback>
+        <title>Update Chapters</title>
+        <access_arguments>access CiviCRM</access_arguments>
+    </item>
+</menu>

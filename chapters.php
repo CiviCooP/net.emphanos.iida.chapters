@@ -4,6 +4,8 @@ require_once 'chapters.civix.php';
 
 /**
  * Implements hook_civicrm_post().
+ *
+ * @link http://wiki.civicrm.org/confluence/display/CRMDOC44/hook_civicrm_post
  */
 function chapters_civicrm_post( $op, $objectName, $objectId, &$objectRef ) {
   if ($objectName == 'Address') {
@@ -13,12 +15,49 @@ function chapters_civicrm_post( $op, $objectName, $objectId, &$objectRef ) {
 }
 
 /**
- * Implements hook_civicrm_customFieldOptions().
+ * Implements hook_civicrm_optionValues().
  *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC44/hook_civicrm_customFieldOptions
+ * @link http://wiki.civicrm.org/confluence/display/CRMDOC44/hook_civicrm_optionValues
  */
-function chapters_civicrm_customFieldOptions($fieldID, &$options, $detailedFormat = false ) {
-  CRM_Chapters_CountryList::civicrm_customFieldOptions($fieldID, $options, $detailedFormat);
+function chapters_civicrm_optionValues(&$options, $name) {
+  if ($name == 'chapter_match_country') {
+    CRM_Chapters_CountryList::optionValues($options, $name);
+  }
+}
+
+/**
+ * Implements hook_civicrm_tabs().
+ *
+ * @link http://wiki.civicrm.org/confluence/display/CRMDOC44/hook_civicrm_tabs
+ */
+function chapters_civicrm_tabs(&$tabs, $contactID) {
+  $config = CRM_Chapters_AutomatchConfig::singelton();
+
+  //unset the tab automatch
+  $tab_id = 'custom_'.$config->getCustomGroup('id');
+  $tabExists = false;
+  $weight = 0;
+  $count = 0;
+  foreach($tabs as $key => $tab) {
+    if ($tab['id'] == $tab_id) {
+      unset($tabs[$key]);
+      $weight = $tab['weight'];
+      $count = $tab['count'];
+      $tabExists = true;
+    }
+  }
+
+  if ($tabExists) {
+    $url = CRM_Utils_System::url('civicrm/contact/automatch_chapters', "reset=1&cid=$contactID&snippet=1");
+    //Count rules
+    $tabs[] = array(
+      'id' => 'automatch_chapters',
+      'url' => $url,
+      'count' => $count,
+      'title' => $config->getCustomGroup('title'),
+      'weight' => $weight,
+    );
+  }
 }
 
 /**

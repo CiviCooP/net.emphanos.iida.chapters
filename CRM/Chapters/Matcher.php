@@ -20,6 +20,22 @@ class CRM_Chapters_Matcher {
     return self::$singleton;
   }
 
+  public static function updateAllContacts($offset=false,$limit=false) {
+    $matcher = CRM_Chapters_Matcher::singleton();
+
+    $l = "";
+    if ($offset && $limit) {
+      $l .= "LIMIT ".$offset.", ".$limit;
+    }
+
+    $sql = "SELECT id from civicrm_contact WHERE is_deleted = 0 ".$l;
+    $dao = CRM_Core_DAO::executeQuery($sql);
+    while($dao->fetch()) {
+      $matcher->updateContact($dao->id);
+    }
+    return true;
+  }
+
   public function updateContact($contact_id) {
     if ($this->already_updating) {
       return;
@@ -31,9 +47,6 @@ class CRM_Chapters_Matcher {
     }
 
     $chapter = $this->findChapterForContact($contact_id);
-    if (!$chapter) {
-      return;
-    }
     $this->already_updating = true;
 
     $config = CRM_Chapters_ChapterConfig::singleton();

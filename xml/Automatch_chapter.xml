@@ -4,7 +4,7 @@
   <CustomGroups>
     <CustomGroup>
       <name>Automatch_chapter</name>
-      <title>Automatch chapter</title>
+      <title>Automatch members</title>
       <extends>Organization</extends>
       <extends_entity_column_value_option_group>contact_type</extends_entity_column_value_option_group>
       <extends_entity_column_value>Chapter</extends_entity_column_value>
@@ -14,7 +14,7 @@
       <help_post></help_post>
       <weight>1</weight>
       <is_active>1</is_active>
-      <table_name>civicrm_value_automatch_chapter_1</table_name>
+      <table_name>civicrm_value_automatch_chapter</table_name>
       <is_multiple>1</is_multiple>
       <collapse_adv_display>0</collapse_adv_display>
       <created_date>20160127 113635</created_date>
@@ -37,7 +37,7 @@
       <note_columns>60</note_columns>
       <note_rows>4</note_rows>
       <column_name>match_type_1</column_name>
-      <option_group_name>match_type_20160127113742</option_group_name>
+      <option_group_name>chapter_match_type</option_group_name>
       <custom_group_name>Automatch_chapter</custom_group_name>
     </CustomField>
     <CustomField>
@@ -54,8 +54,8 @@
       <text_length>255</text_length>
       <note_columns>60</note_columns>
       <note_rows>4</note_rows>
-      <column_name>country_2</column_name>
-      <option_group_name>country_20160127113759</option_group_name>
+      <column_name>country</column_name>
+      <option_group_name>chapter_match_country</option_group_name>
       <custom_group_name>Automatch_chapter</custom_group_name>
     </CustomField>
     <CustomField>
@@ -72,7 +72,7 @@
       <text_length>255</text_length>
       <note_columns>60</note_columns>
       <note_rows>4</note_rows>
-      <column_name>zip_code_range_from_3</column_name>
+      <column_name>zip_code_range_from</column_name>
       <custom_group_name>Automatch_chapter</custom_group_name>
     </CustomField>
     <CustomField>
@@ -89,19 +89,19 @@
       <text_length>255</text_length>
       <note_columns>60</note_columns>
       <note_rows>4</note_rows>
-      <column_name>zip_code_range_to_4</column_name>
+      <column_name>zip_code_range_to</column_name>
       <custom_group_name>Automatch_chapter</custom_group_name>
     </CustomField>
   </CustomFields>
   <OptionGroups>
     <OptionGroup>
-      <name>match_type_20160127113742</name>
+      <name>chapter_match_type</name>
       <title>Match type</title>
       <is_reserved>1</is_reserved>
       <is_active>1</is_active>
     </OptionGroup>
     <OptionGroup>
-      <name>country_20160127113759</name>
+      <name>chapter_match_country</name>
       <title>Country</title>
       <is_reserved>1</is_reserved>
       <is_active>1</is_active>
@@ -117,7 +117,7 @@
       <is_optgroup>0</is_optgroup>
       <is_reserved>0</is_reserved>
       <is_active>1</is_active>
-      <option_group_name>match_type_20160127113742</option_group_name>
+      <option_group_name>chapter_match_type</option_group_name>
     </OptionValue>
     <OptionValue>
       <label>Match country</label>
@@ -128,7 +128,7 @@
       <is_optgroup>0</is_optgroup>
       <is_reserved>0</is_reserved>
       <is_active>1</is_active>
-      <option_group_name>match_type_20160127113742</option_group_name>
+      <option_group_name>chapter_match_type</option_group_name>
     </OptionValue>
   </OptionValues>
 </CustomData>
