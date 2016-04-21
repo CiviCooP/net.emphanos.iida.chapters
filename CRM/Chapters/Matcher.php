@@ -40,6 +40,9 @@ class CRM_Chapters_Matcher {
     if ($this->already_updating) {
       return;
     }
+    if (empty($contact_id)) {
+      return;
+    }
 
 
     if (!$this->hasContactAutomaticMatching($contact_id)) {
